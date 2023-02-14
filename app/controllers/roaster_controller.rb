@@ -1,7 +1,7 @@
 class RoasterController < ApplicationController
     
     def index
-       render json: Roaster.all 
+       render json: Roaster.all
     end
 
     def create
