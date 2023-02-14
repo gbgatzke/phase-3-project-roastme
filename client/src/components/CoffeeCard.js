@@ -2,8 +2,6 @@
 
 function CoffeeCard({ coffee }) {
 
-    console.log(coffee)
-
     const { blend_name, intensifier, origin, img_url, muffin_pairing, notes } = coffee
 
     return(
@@ -14,6 +12,7 @@ function CoffeeCard({ coffee }) {
             <p>{origin}</p>
             <p>{intensifier}</p>
             <p>Muffin pairing: {muffin_pairing}</p>
+            <button className="review_button">Reviews</button>
         </div>
     )
 }

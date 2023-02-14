@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 import Home from './components/Home'
 import RoasterList from './components/RoasterList'
 import CoffeeList from './components/CoffeeList'
+import NavBar from './components/NavBar'
+import RoasterDetails from './components/RoasterDetails'
 
 function App() {
 
@@ -18,7 +20,8 @@ function App() {
 
   return (
     <div className="main">
-      <BrowserRouter>
+      <NavBar/>
+
         <Routes>
 
           <Route path="/roasterlist"
@@ -30,8 +33,14 @@ function App() {
             element={<CoffeeList />}
           />
 
+          <Route path="/roasterdetails"
+            element={<RoasterDetails />}
+          />
+
+          {/* <Route path="/reviews/:id"
+          /> */}
+
         </Routes>
-        </BrowserRouter>
     </div>
   );
 }
