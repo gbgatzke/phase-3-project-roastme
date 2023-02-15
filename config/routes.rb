@@ -9,7 +9,4 @@ Rails.application.routes.draw do
 
   get '/coffeetypes', to: 'coffee_type#index'
   post '/coffeetypes', to: 'coffee_type#create'
-
-  get '/reviews/', to: 'review#index'
-  post '/reviews', to: 'review#create'
 end
