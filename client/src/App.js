@@ -1,19 +1,22 @@
 // import { useState } from 'react'
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
+import { useState, useEffect } from 'react';
 
 import Home from './components/Home'
 import CoffeeType from './components/CoffeeType';
 import Header from './components/Header';
-import ReviewCard from './components/ReviewCard';
 import RoasterList from './components/RoasterList'
 import CoffeeList from './components/CoffeeList'
 import NavBar from './components/NavBar'
 import RoasterDetails from './components/RoasterDetails'
+import NewRoasterForm from './components/NewRoasterForm'
+import NewCoffeeForm from './components/NewCoffeeForm'
+
 
 function App() {
 
-    // const [ roasterList, setRoasterList ] = useState([])
+    const [ roasterList, setRoasterList ] = useState([])
 
     useEffect(() => {
       fetch("/roasters")
@@ -23,6 +26,7 @@ function App() {
 
   return (
     <div className="main">
+    <Header />
     <NavBar/>
 
       <Routes>
@@ -36,12 +40,21 @@ function App() {
           element={<CoffeeList />}
         />
 
-        <Route path="/roasterdetails"
+        <Route path="/roasterdetails/:id"
           element={<RoasterDetails />}
         />
 
-        {/* <Route path="/reviews/:id"
-        /> */}
+        <Route path="/coffeedetails/:id"
+          element={<CoffeeType />}
+        />
+
+        <Route path="/newroasterform"
+          element={<NewRoasterForm />}
+        />
+
+        <Route path="/newcoffeeform"
+          element={<NewCoffeeForm />}
+        />
 
       </Routes>
   </div>

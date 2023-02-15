@@ -6,7 +6,7 @@ function CoffeeList() {
     const [ coffees, setCoffees ] = useState([])
 
     useEffect(() => {
-        fetch('./coffeetypes')
+        fetch('/coffee_types')
         .then(r => r.json())
         .then(list => setCoffees(list))
 }, [])

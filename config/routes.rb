@@ -5,10 +5,13 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get '/roasters', to: 'roaster#index'
-  post '/roasters', to: 'roaster#create'
+  get '/roasters/:id', to: 'roaster#show'
+  get '/roaster_coffees/:id', to: 'roaster#roaster_coffees'
+  get '/roaster_average/:id', to: 'roaster#average_rating'
 
   get '/coffee_types', to: 'coffee_type#index'
   get '/coffee_types/:id', to: 'coffee_type#show'
+  get '/coffee_types_roaster/:id', to: 'coffee_type#roaster'
   post '/coffee_types', to: 'coffee_type#create'
 
   get '/reviews', to: 'review#index'
@@ -16,9 +19,4 @@ Rails.application.routes.draw do
   post '/reviews', to: 'review#create'
   patch '/reviews', to: 'review#update'
   delete '/reviews/:id', to: 'review#destroy'
-  
-  
-
-  get '/coffeetypes', to: 'coffee_type#index'
-  post '/coffeetypes', to: 'coffee_type#create'
 end
