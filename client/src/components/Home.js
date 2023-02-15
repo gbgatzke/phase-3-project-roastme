@@ -1,6 +1,6 @@
-import RoasterCard from './RoasterCard'
+// import RoasterCard from './RoasterCard'
 
-function Home({ roasterList }) {
+function Home() {
 
     // const displayRoasters = roasterList.map(roaster =>
     //     <RoasterCard key={roaster.id} roaster={roaster}/>

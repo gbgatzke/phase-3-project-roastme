@@ -1,7 +1,7 @@
 class CreateCoffeeTypes < ActiveRecord::Migration[7.0]
   def change
     create_table :coffee_types do |t|
-      t.integer :roaster_id
+      t.belongs_to :roaster
       t.string :blend_name
       t.string :intensifier
       t.string :origin
