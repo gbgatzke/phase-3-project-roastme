@@ -31,7 +31,6 @@ function CoffeeType () {
 
     return (
         <>
-            <Header></Header>
             <img src={coffeeType.img_url} alt={coffeeType.blend_name} width={"400"}></img>
             <h1>{coffeeType.blend_name}</h1><br></br>
             {/* <h2>{coffeeType.Roaster.name}</h2><br></br> */}
