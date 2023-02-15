@@ -6,5 +6,7 @@ Rails.application.routes.draw do
 
   get '/roasters', to: 'roaster#index'
   post '/roasters', to: 'roaster#create'
-  
+
+  get '/coffeetypes', to: 'coffee_type#index'
+  post '/coffeetypes', to: 'coffee_type#create'
 end
