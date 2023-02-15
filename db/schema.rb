@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_171337) do
   enable_extension "plpgsql"
 
   create_table "coffee_types", force: :cascade do |t|
-    t.integer "roaster_id"
+    t.bigint "roaster_id"
     t.string "blend_name"
     t.string "intensifier"
     t.string "origin"
@@ -24,15 +24,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_171337) do
     t.string "img_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["roaster_id"], name: "index_coffee_types_on_roaster_id"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.string "reviewer_name"
     t.string "review_body"
     t.integer "rating"
-    t.integer "coffee_type_id"
+    t.bigint "coffee_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["coffee_type_id"], name: "index_reviews_on_coffee_type_id"
   end
 
   create_table "roasters", force: :cascade do |t|

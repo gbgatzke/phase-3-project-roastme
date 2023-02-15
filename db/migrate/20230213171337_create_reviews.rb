@@ -4,7 +4,7 @@ class CreateReviews < ActiveRecord::Migration[7.0]
       t.string :reviewer_name
       t.string :review_body
       t.integer :rating
-      t.integer :coffee_type_id
+      t.belongs_to :coffee_type
 
       t.timestamps
     end
