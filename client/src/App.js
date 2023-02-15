@@ -22,16 +22,29 @@ function App() {
     }, [])
 
   return (
-    <div>
-      <BrowserRouter>
-      {/* <h1>hello</h1> */}
+    <div className="main">
+    <NavBar/>
+
       <Routes>
-        <Route path="/"
-          element={<Home/>}
+
+        <Route path="/roasterlist"
+          element={<RoasterList
+          roasterList={roasterList}/>}
         />
+
+        <Route path="/coffeelist"
+          element={<CoffeeList />}
+        />
+
+        <Route path="/roasterdetails"
+          element={<RoasterDetails />}
+        />
+
+        {/* <Route path="/reviews/:id"
+        /> */}
+
       </Routes>
-      </BrowserRouter>
-    </div>
+  </div>
   );
 }
 
