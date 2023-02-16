@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/coffee_types', to: 'coffee_type#index'
   get '/coffee_types/:id', to: 'coffee_type#show'
   get '/coffee_types_roaster/:id', to: 'coffee_type#roaster'
+  get '/coffee_types_average/:id', to: 'coffee_type#average_rating'
   post '/coffee_type_create', to: 'coffee_type#create'
 
   get '/reviews', to: 'review#index'

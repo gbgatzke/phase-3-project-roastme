@@ -29,11 +29,13 @@ function RoasterDetails({ onDeleteRoaster, onAddCoffee }) {
     },[id])
 
     const handleClick = () => {
-        fetch(`/roaster_delete/${id}`, {
-            method: 'DELETE',
-        })
-        onDeleteRoaster(roaster)
-        navigate('/roasterlist')
+        if (window.confirm("Are you sure you want to delete this roaster?") == true) {
+            fetch(`/roaster_delete/${id}`, {
+                method: 'DELETE',
+            })
+            onDeleteRoaster(roaster)
+            navigate('/roasterlist')
+        }
     }
 
     const roasterCoffees = coffees.map(c =>

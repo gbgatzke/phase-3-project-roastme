@@ -16,6 +16,10 @@ class CoffeeTypeController < ApplicationController
         render json: CoffeeType.find(params[:id]).roaster
     end
 
+    def average_rating
+        render json: CoffeeType.find(params[:id]).reviews.average(:rating).to_i
+    end
+
     private
 
     def coffee_type_params

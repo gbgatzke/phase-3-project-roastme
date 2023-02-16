@@ -8,6 +8,7 @@ function CoffeeType () {
     const [roaster, setRoaster] = useState([])
     const [reviews, setReviews] = useState([])
     const [hidden, setHidden] = useState(true)
+    const [ rating, setRating ] = useState([])
     const { id } = useParams()
 
     useEffect(() => {
@@ -23,6 +24,10 @@ function CoffeeType () {
         .then(res => res.json())
         .then(data => {
             setReviews(data.filter((review) => review.coffee_type_id === parseInt(id)))
+
+        fetch(`/coffee_types_average/${id}`)
+        .then(res => res.json())
+        .then(int => setRating(int))
         })
     },[id])
 
@@ -84,16 +89,35 @@ function CoffeeType () {
             <p>Notes: {coffeeType.notes}</p>
             <p>Suggested Muffin Pairing: {coffeeType.muffin_pairing}</p>
             <p>Available at {roaster.name}</p>
+            <p>Average Rating: {rating}</p>
             <h2>Reviews:</h2>
             {hidden ? <button onClick={handleNewClick} className="review_button">Add New Review</button> : <button onClick={handleCancelClick} className="review_button">Cancel</button> }
             {hidden ? null : 
             <form onSubmit={handleSubmit}>
-                <label>Reviewer Name: </label>
-                <input type="text" id="reviewer-name" name="name" required /><br></br>
+                <input 
+                    type="text" 
+                    id="reviewer-name" 
+                    name="name" 
+                    placeholder="Reviewer Name"
+                    required />
+                <br></br>
                 <label required>Rating (1-5): </label>
-                <input type="number" id="rating" name="rating" min="1" max="5" /><br></br>
-                <label>Review: </label>
-                <textarea type="text" id="review-body" name="review" rows="6" cols="50" required></textarea><br></br>
+                <input 
+                    type="number" 
+                    id="rating" 
+                    name="rating" 
+                    min="1" 
+                    max="5" />
+                <br></br>
+                <textarea className="textarea"
+                    type="text" 
+                    id="review-body" 
+                    name="review" 
+                    rows="5" 
+                    cols="50" 
+                    placeholder="Write Review Here"
+                    required >
+                </textarea><br></br>
                 <button type="submit" className="review_details_button">Add Review</button>
             </form> }
             <div>

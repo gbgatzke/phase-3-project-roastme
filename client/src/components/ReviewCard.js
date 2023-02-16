@@ -48,35 +48,56 @@ function ReviewCard({ review, onDeleteReview, onUpdateReview }) {
     }
 
     function handleDelete() {
-        fetch(`/reviews_delete/${review.id}`, {
-            method: "DELETE",
-        })
-        .then(() => {
-            onDeleteReview(review)
-        })
+        if (window.confirm("Are you sure you want to delete this review?") == true) {
+            fetch(`/reviews_delete/${review.id}`, {
+                method: "DELETE",
+            })
+            .then(onDeleteReview(review))
+        }
     }
 
     return (
         <>
-        { editOpen ? 
-            <>
-            <form className="form" onSubmit={handleSubmit}>
+        { editOpen ?
+            <form className="coffee_preview" onSubmit={handleSubmit}>
                 <div className="form_input">
-                <label>Review: </label>
-                <textarea type="text" id="review_body" name="review_body" rows="6" cols="30" value={review_body} onChange={handleChange} required></textarea><br></br>
+                <textarea 
+                    className="textarea"
+                    type="text" 
+                    id="review_body" 
+                    name="review_body" 
+                    rows="5" 
+                    cols="50"
+                    placeholder="Write Review Here" 
+                    value={review_body} 
+                    onChange={handleChange} 
+                    required>
+                </textarea><br></br>
                 </div>
-                <div className="form_input">
-                <label required>Rating (1-5): </label>
-                <input type="number" id="rating" name="rating" min="1" max="5" value={rating} onChange={handleChange} required /><br></br>
-                </div>
-                <div className="form_input">
-                <label>Reviewer Name: </label>
-                <input type="text" id="reviewer_name}" name="reviewer_name" value={reviewer_name} onChange={handleChange} required /><br></br>
+                    <div className="form_input">
+                    <label required>Rating (1-5): </label>
+                    <input 
+                        type="number" 
+                        id="rating" 
+                        name="rating" 
+                        min="1" 
+                        max="5" 
+                        value={rating} 
+                        onChange={handleChange} required /><br></br>
+                    </div>
+                    <div className="form_input">
+                    <label>Reviewer Name: </label>
+                    <input 
+                        type="text" 
+                        id="reviewer_name" 
+                        name="reviewer_name" 
+                        value={reviewer_name} 
+                        onChange={handleChange} 
+                        required /><br></br>
                 </div>
                 <button type="submit" className="review_details_button">Submit Edit</button>
-                <button className="review_details_button" title={"Cancel"} onClick={handleCancelClick}>Cancel</button>
+                <button type="button" className="review_details_button" title={"Cancel"} onClick={handleCancelClick}>Cancel</button>
             </form>
-            </>
             :
             <div className="coffee_preview">
                 <h4>{review.review_body}</h4>
