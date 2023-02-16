@@ -29,7 +29,7 @@ Roaster.create(name: "MiddleState Coffee Roasters", img_url: "https://testedcoff
 # Create Reviews
 50.times { Review.create(
     reviewer_name: Faker::FunnyName.name,
-    review_body: Faker::Hipster.sentences,
+    review_body: Faker::Quotes::Shakespeare.romeo_and_juliet,
     rating: [1, 2, 3, 4, 5].sample,
     coffee_type_id: CoffeeType.all.sample.id
 )}

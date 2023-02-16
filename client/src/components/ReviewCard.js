@@ -50,12 +50,12 @@ function ReviewCard({ review, onDeleteReview, onUpdateReview }) {
     }
 
     return (
-        <div>
-            <h3>{review.reviewer_name}</h3>
-            <h3>{review.review_body}</h3>
-            <h3>Rating: {review.rating}</h3>
-            <button title={"Edit Review"} onClick={handleEditClick}>Edit Review</button>
-            <button title={"Delete Review"} onClick={handleDelete}>Delete Review</button>
+        <div className="coffee_preview">
+            <h4>{review.review_body}</h4>
+            <h4>Rating: {review.rating}</h4>
+            <p>{review.reviewer_name}</p>
+            <button className="review_details_button" title={"Edit Review"} onClick={handleEditClick}>Edit Review</button>
+            <button className="review_details_button" title={"Delete Review"} onClick={handleDelete}>Delete Review</button>
         </div>
     )
 }
