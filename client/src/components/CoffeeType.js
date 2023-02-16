@@ -26,9 +26,17 @@ function CoffeeType () {
         })
     },[id])
 
+    function onUpdateReview(updatedReview) {
+        const updatedReviews = reviews.map((review) => {
+            if (review.id === updatedReview.id) {
+                return updatedReview }
+            else {
+                return review }
+        })
+        setReviews(updatedReviews)
+    }
     function onDeleteReview(deletedReview) {
-        const updatedReviews = reviews.filter((review) =>
-        review.id !== deletedReview.id)
+        const updatedReviews = reviews.filter((review) => review.id !== deletedReview.id)
         setReviews(updatedReviews)
       }
 
@@ -82,15 +90,15 @@ function CoffeeType () {
             <form onSubmit={handleSubmit}>
                 <label>Reviewer Name: </label>
                 <input type="text" id="reviewer-name" name="name" required /><br></br>
-                <label>Review: </label>
-                <textarea type="text" id="review-body" name="review" rows="6" cols="50" required></textarea><br></br>
                 <label required>Rating (1-5): </label>
                 <input type="number" id="rating" name="rating" min="1" max="5" /><br></br>
+                <label>Review: </label>
+                <textarea type="text" id="review-body" name="review" rows="6" cols="50" required></textarea><br></br>
                 <button type="submit" className="review_details_button">Add Review</button>
             </form> }
             <div>
                 {reviews.map(review => {
-                    return <ReviewCard key={review.id} review={review} onDeleteReview={onDeleteReview}/>
+                    return <ReviewCard key={review.id} review={review} onDeleteReview={onDeleteReview} onUpdateReview={onUpdateReview} />
                     })
                 }
             </div>

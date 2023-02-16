@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   post '/coffee_type_create', to: 'coffee_type#create'
 
   get '/reviews', to: 'review#index'
-  get '/reviews', to: 'review#show'
+  get '/reviews/:id', to: 'review#show'
   post '/reviews_create', to: 'review#create'
-  patch '/reviews', to: 'review#update'
-  delete '/reviews/:id', to: 'review#destroy'
+  patch '/reviews_update/:id', to: 'review#update'
+  delete '/reviews_delete/:id', to: 'review#destroy'
 end

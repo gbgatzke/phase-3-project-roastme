@@ -7,7 +7,7 @@ class ReviewController < ApplicationController
 
     def show
         puts params[:id]
-        render json: CoffeeType.find(params[:id])
+        render json: Review.find(params[:id])
     end
 
     def create
@@ -16,8 +16,9 @@ class ReviewController < ApplicationController
     end
 
     def update
-        review = Review.find(params[id])
+        review = Review.find(params[:id])
         review.update!(review_params)
+        render json: review
     end
 
     def destroy
