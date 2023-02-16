@@ -1,16 +1,19 @@
 class CoffeeTypeController < ApplicationController
-
     def index
-        render json: CoffeeType.all 
+       render json: CoffeeType.all
     end
 
     def create
-        coffee_type = CoffeeType.create!(coffee_type_params)
-        render json: coffee_type
+        new_coffee = CoffeeType.create!(coffee_type_params)
+        render json: new_coffee
     end
 
     def show
         render json: CoffeeType.find(params[:id])
+    end
+
+    def roaster
+        render json: CoffeeType.find(params[:id]).roaster
     end
 
     private
