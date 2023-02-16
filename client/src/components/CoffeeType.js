@@ -44,37 +44,26 @@ function CoffeeType () {
         e.preventDefault()
         const formElement = e.target
         const newReviewData = {
-            id: uuid(),
             reviewer_name: formElement["name"].value,
             review_body: formElement["review"].value,
-            rating: formElement["rating"].value
+            rating: formElement["rating"].value,
+            coffee_type_id: id
         }
-        // TO DO: add code to update database
+        fetch('/reviews_create', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newReviewData)
+        })
+        .then(r => r.json())
+        .then(review => {
+            reviews.push(review)
+            setHidden(true)
+        })
     }
 
     return (
-        <>
-            <img src={coffeeType.img_url} alt={coffeeType.blend_name} width={"400"}></img>
-            <h1>{coffeeType.blend_name}</h1>
-            {/* <h2>{coffeeType.Roaster.name}</h2><br></br> */}
-            <h3>Strength: {coffeeType.intensifier}</h3>
-            <h3>Origin: {coffeeType.origin}</h3>
-            <h3>Notes: </h3><h3>{coffeeType.notes}</h3>
-            <h3>Suggested Muffin Pairing: {coffeeType.muffin_pairing}</h3><br></br>
-            <h2>Reviews:</h2>
-            {hidden ? <button onClick={handleNewClick}>Add New Review</button> : <button onClick={handleCancelClick}>Cancel</button> }
-            {hidden ? null : 
-            <form onSubmit={handleSubmit}>
-                <label>Reviewer Name: </label>
-                <input type="text" id="reviewer-name" name="name" required /><br></br>
-                <label>Review: </label>
-                <textarea type="text" id="review-body" name="review" rows="6" cols="50" required></textarea><br></br>
-                <label>Rating (1-5): </label>
-                <input type="number" id="rating" name="rating" min="1" max="5" /><br></br>
-
-                <button type="submit">Add Review</button>
-            </form> }
-            <ul>
         <div className="coffee_details">
             <img
                 src={coffeeType.img_url}
@@ -87,8 +76,18 @@ function CoffeeType () {
             <p>Notes: {coffeeType.notes}</p>
             <p>Suggested Muffin Pairing: {coffeeType.muffin_pairing}</p>
             <p>Available at {roaster.name}</p>
-            <h2>Reviews:</h2><button className="review_button">Add New Review</button>
-
+            <h2>Reviews:</h2>
+            {hidden ? <button onClick={handleNewClick} className="review_button">Add New Review</button> : <button onClick={handleCancelClick} className="review_button">Cancel</button> }
+            {hidden ? null : 
+            <form onSubmit={handleSubmit}>
+                <label>Reviewer Name: </label>
+                <input type="text" id="reviewer-name" name="name" required /><br></br>
+                <label>Review: </label>
+                <textarea type="text" id="review-body" name="review" rows="6" cols="50" required></textarea><br></br>
+                <label required>Rating (1-5): </label>
+                <input type="number" id="rating" name="rating" min="1" max="5" /><br></br>
+                <button type="submit" className="review_details_button">Add Review</button>
+            </form> }
             <div>
                 {reviews.map(review => {
                     return <ReviewCard key={review.id} review={review} onDeleteReview={onDeleteReview}/>

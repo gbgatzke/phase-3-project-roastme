@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   get '/reviews', to: 'review#index'
   get '/reviews', to: 'review#show'
-  post '/reviews', to: 'review#create'
+  post '/reviews_create', to: 'review#create'
   patch '/reviews', to: 'review#update'
   delete '/reviews/:id', to: 'review#destroy'
 end

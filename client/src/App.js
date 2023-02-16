@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
-import { useState, useEffect } from 'react';
 
 import Home from './components/Home'
 import CoffeeType from './components/CoffeeType';
@@ -11,7 +10,6 @@ import CoffeeList from './components/CoffeeList'
 import NavBar from './components/NavBar'
 import RoasterDetails from './components/RoasterDetails'
 import NewRoasterForm from './components/NewRoasterForm'
-import NewCoffeeForm from './components/NewCoffeeForm'
 
 
 function App() {
