@@ -1,14 +1,16 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import RoasterCoffeePreview from './RoasterCoffeePreview'
+import { useNavigate } from 'react-router-dom'
 
-function RoasterDetails() {
+function RoasterDetails({ onDeleteRoaster }) {
 
     const [ roaster, setRoaster ] = useState([])
     const [ coffees, setCoffees ] = useState([])
     const [ rating, setRating ] = useState([])
 
     const { id } = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetch(`/roasters/${id}`)
@@ -23,6 +25,14 @@ function RoasterDetails() {
         .then(r => r.json())
         .then(r => setRating(r))
     },[id])
+
+    const handleClick = () => {
+        fetch(`/roaster_delete/${id}`, {
+            method: 'DELETE',
+        })
+        onDeleteRoaster(roaster)
+        navigate('/roasterlist')
+    }
 
     const roasterCoffees = coffees.map(c =>
         <RoasterCoffeePreview key={c.id} coffee={c}/>
@@ -40,6 +50,7 @@ function RoasterDetails() {
             <a href={roaster.website_url}>{roaster.name}</a>
             <h2>Varieties:</h2>
             {roasterCoffees}
+            <button className="review_button" onClick={handleClick}>Remove Roaster</button>
         </div>
     )
 }

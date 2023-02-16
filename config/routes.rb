@@ -8,11 +8,13 @@ Rails.application.routes.draw do
   get '/roasters/:id', to: 'roaster#show'
   get '/roaster_coffees/:id', to: 'roaster#roaster_coffees'
   get '/roaster_average/:id', to: 'roaster#average_rating'
+  post '/roaster_create', to: 'roaster#create'
+  delete '/roaster_delete/:id', to: 'roaster#destroy'
 
   get '/coffee_types', to: 'coffee_type#index'
   get '/coffee_types/:id', to: 'coffee_type#show'
   get '/coffee_types_roaster/:id', to: 'coffee_type#roaster'
-  post '/coffee_types', to: 'coffee_type#create'
+  post '/coffee_type_create', to: 'coffee_type#create'
 
   get '/reviews', to: 'review#index'
   get '/reviews', to: 'review#show'

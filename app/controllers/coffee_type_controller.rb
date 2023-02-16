@@ -4,8 +4,8 @@ class CoffeeTypeController < ApplicationController
     end
 
     def create
-        coffee_type = CoffeType.create!(coffee_type_params)
-        render json: coffee_type
+        new_coffee = CoffeeType.create!(coffee_type_params)
+        render json: new_coffee
     end
 
     def show
@@ -26,7 +26,6 @@ class CoffeeTypeController < ApplicationController
             :notes,
             :muffin_pairing,
             :img_url,
-            :roaster_id
         )
     end
 end

@@ -17,12 +17,34 @@ import NewCoffeeForm from './components/NewCoffeeForm'
 function App() {
 
     const [ roasterList, setRoasterList ] = useState([])
+    const [ coffees, setCoffees ] = useState([])
 
     useEffect(() => {
       fetch("/roasters")
       .then(r => r.json())
       .then(roasters => setRoasterList(roasters))
     }, [])
+
+    useEffect(() => {
+      fetch('/coffee_types')
+      .then(r => r.json())
+      .then(list => setCoffees(list))
+    }, [])
+
+    const onAddRoaster = (newRoaster) => {
+      setRoasterList([...roasterList, newRoaster])
+    }
+
+    const onDeleteRoaster = (deletedRoaster) => {
+      const updatedRoasters = roasterList.filter(roaster =>
+          roaster.id !== deletedRoaster.id
+        )
+      setRoasterList(updatedRoasters)
+    }
+
+    const onAddCoffee = (newCoffee) => {
+      setCoffees([...coffees, newCoffee])
+    }
 
   return (
     <div className="main">
@@ -31,17 +53,23 @@ function App() {
 
       <Routes>
 
+        <Route path="/"
+          element={<Home />}
+        />
+
         <Route path="/roasterlist"
           element={<RoasterList
-          roasterList={roasterList}/>}
+            roasterList={roasterList}
+            onDeleteRoaster={onDeleteRoaster}
+            />}
         />
 
         <Route path="/coffeelist"
-          element={<CoffeeList />}
+          element={<CoffeeList coffees={coffees}/>}
         />
 
         <Route path="/roasterdetails/:id"
-          element={<RoasterDetails />}
+          element={<RoasterDetails onDeleteRoaster={onDeleteRoaster}/>}
         />
 
         <Route path="/coffeedetails/:id"
@@ -49,11 +77,11 @@ function App() {
         />
 
         <Route path="/newroasterform"
-          element={<NewRoasterForm />}
+          element={<NewRoasterForm onAddRoaster={onAddRoaster}/>}
         />
 
         <Route path="/newcoffeeform"
-          element={<NewCoffeeForm />}
+          element={<NewCoffeeForm onAddCoffee={onAddCoffee}/>}
         />
 
       </Routes>

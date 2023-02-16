@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
-function NewRoasterForm() {
+function NewRoasterForm({ onAddRoaster }) {
 
     const navigate = useNavigate()
 
@@ -16,10 +16,26 @@ function NewRoasterForm() {
         setFormData({...formData, [name]: value})
       }
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        fetch("/roaster_create", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(r => r.json())
+        .then(newR => {
+            onAddRoaster(newR);
+            navigate("/roasterlist");
+        })
+    }
+
     return (
         <div className="form">
             <h1>Enter Roaster Info:</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="form_input">
                     <input
                         type="text"
@@ -50,7 +66,7 @@ function NewRoasterForm() {
                         placeholder="Roaster website"
                     />
                 </div>
-                <button className="review_button" type="submit">Add new roaster</button>
+                <button className="review_button" type="submit">Add New Roaster</button>
             </form>
         </div>
     )

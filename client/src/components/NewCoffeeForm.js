@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
-function NewCoffeeForm() {
+function NewCoffeeForm({ onAddCoffee }) {
 
     const navigate = useNavigate()
 
@@ -12,7 +12,6 @@ function NewCoffeeForm() {
         notes:"",
         muffin_pairing: "",
         img_url: "",
-        roaster: "",
     })
 
     const handleChange = (e) => {
@@ -20,10 +19,28 @@ function NewCoffeeForm() {
         setFormData({...formData, [name]: value})
       }
 
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        fetch('/coffee_type_create', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(r => r.json())
+        .then(newCoff => {
+            console.log(newCoff)
+            onAddCoffee(newCoff)
+            navigate("/coffeelist")
+        })
+    }
+
     return (
         <div className="form">
             <h1>Enter Coffee Info:</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="form_input">
                     <input
                         type="text"
@@ -41,7 +58,7 @@ function NewCoffeeForm() {
                         name="intensifier"
                         value={formData.intensifier}
                         onChange={handleChange}
-                        placeholder="Character"
+                        placeholder="Strength"
                     />
                 </div>
                 <div className="form_input">
@@ -52,6 +69,16 @@ function NewCoffeeForm() {
                         value={formData.origin}
                         onChange={handleChange}
                         placeholder="Origin"
+                    />
+                </div>
+                <div className="form_input">
+                    <input
+                        type="text"
+                        id="notes"
+                        name="notes"
+                        value={formData.notes}
+                        onChange={handleChange}
+                        placeholder="Notes"
                     />
                 </div>
                 <div className="form_input">
@@ -74,17 +101,7 @@ function NewCoffeeForm() {
                         placeholder="Coffee image"
                     />
                 </div>
-                <div className="form_input">
-                    <input
-                        type="text"
-                        id="roaster"
-                        name="roaster"
-                        value={formData.roaster}
-                        onChange={handleChange}
-                        placeholder="Roaster"
-                    />
-                </div>
-                <button className="review_button" type="submit">Add new roaster</button>
+                <button className="review_button" type="submit">Add New Coffee</button>
             </form>
         </div>
     )

@@ -13,6 +13,10 @@ class RoasterController < ApplicationController
         render json: Roaster.find(params[:id])
     end
 
+    def destroy
+        render json: Roaster.find(params[:id]).destroy
+    end
+
     def roaster_coffees
         render json: Roaster.find(params[:id]).coffee_types
     end

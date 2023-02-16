@@ -16,7 +16,7 @@ function CoffeeCard({ coffee }) {
             <h1>{blend_name}</h1>
             <h2>{notes}</h2>
             <p>{origin}</p>
-            <p>Character: {intensifier}</p>
+            <p>Strength: {intensifier}</p>
             <p>Muffin pairing: {muffin_pairing}</p>
         </div>
     )
