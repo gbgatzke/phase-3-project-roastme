@@ -14,9 +14,9 @@ function NavBar( ) {
                 <NavLink to="/newroasterform">
                     <button className="button">New Roaster</button>
                 </NavLink>
-                <NavLink to="/newcoffeeform">
+                {/* <NavLink to="/newcoffeeform">
                     <button className="button">New Coffee</button>
-                </NavLink>
+                </NavLink> */}
             </nav>
         </div>
     )

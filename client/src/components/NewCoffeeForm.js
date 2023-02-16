@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
-function NewCoffeeForm({ onAddCoffee }) {
+function NewCoffeeForm({ onAddCoffee, id }) {
 
     const navigate = useNavigate()
+
+    const roasterId = parseInt(id)
 
     const [formData, setFormData] = useState({
         blend_name: "",
@@ -12,12 +14,16 @@ function NewCoffeeForm({ onAddCoffee }) {
         notes:"",
         muffin_pairing: "",
         img_url: "",
+        roaster_id: roasterId,
     })
 
     const handleChange = (e) => {
         const { name, value } = e.target
         setFormData({...formData, [name]: value})
       }
+    const handleRoasterIdChange = (e) => {
+
+    }
 
 
     const handleSubmit = (e) => {

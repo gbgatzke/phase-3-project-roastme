@@ -69,7 +69,7 @@ function App() {
         />
 
         <Route path="/roasterdetails/:id"
-          element={<RoasterDetails onDeleteRoaster={onDeleteRoaster}/>}
+          element={<RoasterDetails onDeleteRoaster={onDeleteRoaster} onAddCoffee={onAddCoffee}/>}
         />
 
         <Route path="/coffeedetails/:id"
@@ -80,9 +80,9 @@ function App() {
           element={<NewRoasterForm onAddRoaster={onAddRoaster}/>}
         />
 
-        <Route path="/newcoffeeform"
+        {/* <Route path="/newcoffeeform"
           element={<NewCoffeeForm onAddCoffee={onAddCoffee}/>}
-        />
+        /> */}
 
       </Routes>
   </div>

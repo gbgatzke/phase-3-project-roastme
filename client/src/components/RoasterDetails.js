@@ -2,12 +2,14 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import RoasterCoffeePreview from './RoasterCoffeePreview'
 import { useNavigate } from 'react-router-dom'
+import NewCoffeeForm from './NewCoffeeForm'
 
-function RoasterDetails({ onDeleteRoaster }) {
+function RoasterDetails({ onDeleteRoaster, onAddCoffee }) {
 
     const [ roaster, setRoaster ] = useState([])
     const [ coffees, setCoffees ] = useState([])
     const [ rating, setRating ] = useState([])
+    const [ formVisible, setFormVisible ] = useState(false)
 
     const { id } = useParams()
     const navigate = useNavigate()
@@ -38,6 +40,10 @@ function RoasterDetails({ onDeleteRoaster }) {
         <RoasterCoffeePreview key={c.id} coffee={c}/>
         )
 
+    const onAddNew = () => {
+        setFormVisible(!formVisible)
+    }
+
     return(
         <div className="roaster_details">
             <img
@@ -50,7 +56,9 @@ function RoasterDetails({ onDeleteRoaster }) {
             <a href={roaster.website_url}>{roaster.name}</a>
             <h2>Varieties:</h2>
             {roasterCoffees}
+            {formVisible ? <NewCoffeeForm id={id} onAddCoffee={onAddCoffee}/> : null}
             <button className="review_button" onClick={handleClick}>Remove Roaster</button>
+            <button className="review_button" onClick={onAddNew}>Add New Variety</button>
         </div>
     )
 }

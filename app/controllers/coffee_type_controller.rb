@@ -26,6 +26,7 @@ class CoffeeTypeController < ApplicationController
             :notes,
             :muffin_pairing,
             :img_url,
+            :roaster_id
         )
     end
 end

@@ -2,7 +2,29 @@ body {
   background-image: url("https://i.pinimg.com/originals/31/ca/2b/31ca2bcf105003bf97be1aaf9e564df6.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  /* opacity: 0.5; */
+  background-size: cover;/* opacity: 0.5; */
+}
+
+header {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1)
+}
+
+a {
+  text-decoration: none;
+}
+
+.header_text {
+  padding: 20px;
+  text-align: center;
+  border: solid 3px black;
+  border-radius: 5px;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+  background-color: #e1bc85;
+  font-size: 2rem;
 }
 
 .main {
@@ -78,8 +100,8 @@ nav {
   margin-left: 10px;
   margin-right: 10px;
   background-color: #e1bc85;
-  border: none;
   color: black;
+  border: solid 1px black;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -157,4 +179,17 @@ nav {
   border-radius: 5px;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.review_details_button {
+  margin: 5px;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 5px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  border-radius: 5px;
 }

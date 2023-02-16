@@ -46,12 +46,12 @@ function CoffeeType () {
             <p>Available at {roaster.name}</p>
             <h2>Reviews:</h2><button className="review_button">Add New Review</button>
 
-            <ul>
+            <div>
                 {reviews.map(review => {
                     return <ReviewCard key={review.id} review={review} onDeleteReview={onDeleteReview}/>
                     })
                 }
-            </ul>
+            </div>
         </div>
     )
 }
