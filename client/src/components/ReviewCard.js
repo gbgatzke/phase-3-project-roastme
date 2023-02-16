@@ -20,14 +20,7 @@ function ReviewCard({ review, onDeleteReview, onUpdateReview }) {
 
     function handleEditClick() {
     //     setShowReview(
-    //         <form onSubmit={handleSubmit}>
-    //             <label>Reviewer Name: </label>
-    //             <input type="text" id="reviewer-name" name="name" value="reviewerName" onChange={handleChange} required /><br></br>
-    //             <label>Review: </label>
-    //             <textarea type="text" id="review-body" name="review" rows="6" cols="50" value="reviewBody" onChange={handleChange} required></textarea><br></br>
-    //             <button onClick={setEditOpen(false)}>Cancel</button>
-    //             <button type="submit">Update Review</button>
-    //         </form>
+
     //     )
     }
 

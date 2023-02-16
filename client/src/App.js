@@ -1,4 +1,4 @@
-// import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
 
@@ -13,7 +13,7 @@ import RoasterDetails from './components/RoasterDetails'
 
 function App() {
 
-    // const [ roasterList, setRoasterList ] = useState([])
+    const [ roasterList, setRoasterList ] = useState([])
 
     useEffect(() => {
       fetch("/roasters")
@@ -40,8 +40,9 @@ function App() {
           element={<RoasterDetails />}
         />
 
-        {/* <Route path="/reviews/:id"
-        /> */}
+        <Route path="/coffeetype/:id"
+          element={<CoffeeType />}
+        />
 
       </Routes>
   </div>
